@@ -21,6 +21,6 @@ namespace EasyBooking.Data
         public DbSet<Flight> Flights { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Payment> Payments { get; set; }
-
+        public DbSet<Schedule> Schedules { get; set; }
     }
 }

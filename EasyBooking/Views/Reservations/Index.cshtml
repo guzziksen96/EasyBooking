@@ -12,22 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DateTime)
+            @Html.DisplayNameFor(model => model.Flight.FlightCode)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TravelType)
+            @Html.DisplayNameFor(model => model.Payment.Mode)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstClassRemainingSeats)
+            @Html.DisplayNameFor(model => model.UserId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EconomyClassRemainingSeats)
+            @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstClassPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EconomyClassPrice)
+            @Html.DisplayNameFor(model => model.FlightClassNumber)
         </th>
         <th></th>
     </tr>
@@ -35,22 +32,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.DateTime)
+            @Html.DisplayFor(modelItem => item.Flight.FlightCode)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TravelType)
+            @Html.DisplayFor(modelItem => item.Payment.Mode)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstClassRemainingSeats)
+            @Html.DisplayFor(modelItem => item.UserId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EconomyClassRemainingSeats)
+            @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstClassPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EconomyClassPrice)
+            @Html.DisplayFor(modelItem => item.FlightClassNumber)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

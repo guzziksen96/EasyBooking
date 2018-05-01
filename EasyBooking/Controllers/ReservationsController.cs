@@ -12,6 +12,7 @@ using EasyBooking.Models.ViewModels;
 
 namespace EasyBooking.Controllers
 {
+    [Authorize]
     public class ReservationsController : Controller
     {
         private EasyBookingDbContext db = new EasyBookingDbContext();
@@ -19,7 +20,8 @@ namespace EasyBooking.Controllers
         // GET: Reservations
         public async Task<ActionResult> Index()
         {
-            return View(await db.Reservations.ToListAsync());
+            var reservations = db.Reservations.Include(r => r.Flight).Include(r => r.Payment);
+            return View(await reservations.ToListAsync());
         }
 
         // GET: Reservations/Details/5
@@ -37,9 +39,12 @@ namespace EasyBooking.Controllers
             return View(reservation);
         }
 
+
         // GET: Reservations/Create
         public ActionResult Create()
         {
+            ViewBag.flightId = new SelectList(db.Flights, "Id", "FlightCode");
+            ViewBag.paymentId = new SelectList(db.Payments, "Id", "Mode");
             return View();
         }
 
@@ -48,7 +53,7 @@ namespace EasyBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,DateTime,TravelType,FirstClassRemainingSeats,EconomyClassRemainingSeats,FirstClassPrice,EconomyClassPrice")] Reservation reservation)
+        public async Task<ActionResult> Create([Bind(Include = "Id,UserId,flightId,paymentId,Price,FlightClassNumber")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +62,8 @@ namespace EasyBooking.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.flightId = new SelectList(db.Flights, "Id", "FlightCode", reservation.flightId);
+            ViewBag.paymentId = new SelectList(db.Payments, "Id", "Mode", reservation.paymentId);
             return View(reservation);
         }
 
@@ -72,6 +79,8 @@ namespace EasyBooking.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.flightId = new SelectList(db.Flights, "Id", "FlightCode", reservation.flightId);
+            ViewBag.paymentId = new SelectList(db.Payments, "Id", "Mode", reservation.paymentId);
             return View(reservation);
         }
 
@@ -80,7 +89,7 @@ namespace EasyBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,DateTime,TravelType,FirstClassRemainingSeats,EconomyClassRemainingSeats,FirstClassPrice,EconomyClassPrice")] Reservation reservation)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,UserId,flightId,paymentId,Price,FlightClassNumber")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +97,8 @@ namespace EasyBooking.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.flightId = new SelectList(db.Flights, "Id", "FlightCode", reservation.flightId);
+            ViewBag.paymentId = new SelectList(db.Payments, "Id", "Mode", reservation.paymentId);
             return View(reservation);
         }
 

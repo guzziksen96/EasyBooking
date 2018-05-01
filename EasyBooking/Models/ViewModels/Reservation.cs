@@ -7,19 +7,21 @@ using System.Web;
 
 namespace EasyBooking.Models.ViewModels
 {
+    public enum FlightClass { Economy, First }
     [Table("reservations")]
     public class Reservation
     {
         [Key]
         public int Id { get; set; }
-        public DateTime DateTime { get; set; }
+        public string UserId { get; set; }
+        [ForeignKey("Flight")]
+        public int flightId { get; set; }
+        [ForeignKey("Payment")]
+        public int paymentId { get; set; }
+        public int Price { get; set; }
+        public int FlightClassNumber { get; set;  }
         public virtual Flight Flight { get; set; }
-        public string TravelType { get; set; }
-        public int FirstClassRemainingSeats { get; set; } 
-        public int EconomyClassRemainingSeats { get; set; } 
-        public double FirstClassPrice { get; set; }
-        public double EconomyClassPrice { get; set; }
-        
-
+        public virtual Schedule Schedule { get; set; }
+        public virtual Payment Payment { get; set; }
     }
 }

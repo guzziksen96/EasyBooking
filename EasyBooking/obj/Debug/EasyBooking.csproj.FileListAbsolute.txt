@@ -123,3 +123,7 @@ K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csproj.Co
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csproj.CopyComplete
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.pdb
+K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Faker.NET4.dll
+K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\FizzWare.NBuilder.dll
+K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\de-DE\Faker.NET4.resources.dll
+K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csprojResolveAssemblyReference.cache

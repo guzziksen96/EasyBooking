@@ -16,5 +16,6 @@ namespace EasyBooking.Models.ViewModels
         public double TotalAmount { get; set; }
         public string Details { get; set; }
 
+        public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }

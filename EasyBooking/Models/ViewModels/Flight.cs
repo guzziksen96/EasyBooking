@@ -17,7 +17,7 @@ namespace EasyBooking.Models.ViewModels
         public DateTime ArrivalDate { get; set; }
         public String DepartureCity { get; set; }
         public String ArrivalCity { get; set; }
-        public int AvailableSeats { get; set; }
-        public int Price { get; set; }
+        public int SeatsFirstclass { get; set; }
+        public int SeatsEconomyclass { get; set; }
     }
 }
