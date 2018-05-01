@@ -1,0 +1,8 @@
+﻿body {
+}
+
+.landing-page {
+    background: url(/Images/flights.jpg) no-repeat center 30px;
+    min-height: 400px;
+    background-size: 100% 100%;
+}

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<EasyBooking.Models.ViewModels.Reservation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TravelType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstClassRemainingSeats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EconomyClassRemainingSeats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstClassPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EconomyClassPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TravelType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstClassRemainingSeats)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EconomyClassRemainingSeats)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstClassPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EconomyClassPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

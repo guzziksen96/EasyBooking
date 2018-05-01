@@ -1,0 +1,66 @@
+﻿@model EasyBooking.Models.ViewModels.Reservation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TravelType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TravelType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstClassRemainingSeats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstClassRemainingSeats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EconomyClassRemainingSeats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EconomyClassRemainingSeats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstClassPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstClassPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EconomyClassPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EconomyClassPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
