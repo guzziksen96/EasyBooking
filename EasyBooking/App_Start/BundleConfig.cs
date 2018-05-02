@@ -21,6 +21,7 @@ namespace EasyBooking
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-datepicker.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -28,7 +29,12 @@ namespace EasyBooking
                       "~/Content/site.css",
                       "~/Content/typeahead.css",
                       "~/Content/font-awesome.css",
+                       "~/Content/bootstrap-datepicker.css",
                       "~/Content/bootstrap-theme.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datePicker").Include(
+               "~/Scripts/moment.min.js",
+               "~/Scripts/bootstrap-datetimepicker.min.js"));
             
         }
     }

@@ -53,6 +53,8 @@ K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\VBCSCompiler.exe.con
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Antlr3.Runtime.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\EntityFramework.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\EntityFramework.SqlServer.dll
+K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Faker.NET4.dll
+K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\FizzWare.NBuilder.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.AI.Agent.Intercept.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.AI.DependencyCollector.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -119,11 +121,9 @@ K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.AI.DependencyColl
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.AI.ServerTelemetryChannel.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.AI.WindowsServer.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.AI.Web.xml
+K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\de-DE\Faker.NET4.resources.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csproj.CoreCompileInputs.cache
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csproj.CopyComplete
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.pdb
-K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Faker.NET4.dll
-K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\FizzWare.NBuilder.dll
-K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\de-DE\Faker.NET4.resources.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csprojResolveAssemblyReference.cache

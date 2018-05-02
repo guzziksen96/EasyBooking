@@ -6,3 +6,16 @@
     min-height: 400px;
     background-size: 100% 100%;
 }
+
+#fromDate {
+    margin-left: 15px;
+}
+
+.dates {
+    display: flex;
+}
+
+#returnDate {
+    flex: 1;
+    margin-left: 190px;
+}
