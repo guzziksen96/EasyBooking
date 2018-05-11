@@ -1,4 +1,5 @@
-﻿using EasyBooking.Models.ViewModels;
+﻿using EasyBooking.Models;
+using EasyBooking.Models.ViewModels;
 using FizzWare.NBuilder;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ using System.Web;
 
 namespace EasyBooking.Data
 {
-    public class DatabaseInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<EasyBookingDbContext>
+    public class DatabaseInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
-        protected override void Seed(EasyBookingDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             var randomGenerator = new RandomGenerator();
 
@@ -24,14 +25,6 @@ namespace EasyBooking.Data
                     .Build();
             
             context.Flights.AddOrUpdate(f => f.Id, flights.ToArray());
-            context.SaveChanges();
-
-            var reservations = Builder<Reservation>.CreateListOfSize(200)
-                        .All()
-                        .With(r => r.paymentId = Faker.RandomNumber.Next(1, 20))
-                        .With(r => r.flightId = Faker.RandomNumber.Next(1,30))
-                        .Build();
-            context.Reservations.AddOrUpdate(r => r.Id, reservations.ToArray());
             context.SaveChanges();
 
             var schedules = Builder<Schedule>.CreateListOfSize(200)

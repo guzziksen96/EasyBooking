@@ -9,13 +9,14 @@ using System.Web;
 using System.Web.Mvc;
 using EasyBooking.Data;
 using EasyBooking.Models.ViewModels;
+using EasyBooking.Models;
 
 namespace EasyBooking.Controllers
 {
     [Authorize]
     public class ReservationsController : Controller
     {
-        private EasyBookingDbContext db = new EasyBookingDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Reservations
         public async Task<ActionResult> Index()
@@ -61,9 +62,7 @@ namespace EasyBooking.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.flightId = new SelectList(db.Flights, "Id", "FlightCode", reservation.flightId);
-            ViewBag.paymentId = new SelectList(db.Payments, "Id", "Mode", reservation.paymentId);
+            
             return View(reservation);
         }
 
@@ -79,8 +78,6 @@ namespace EasyBooking.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.flightId = new SelectList(db.Flights, "Id", "FlightCode", reservation.flightId);
-            ViewBag.paymentId = new SelectList(db.Payments, "Id", "Mode", reservation.paymentId);
             return View(reservation);
         }
 
@@ -97,8 +94,6 @@ namespace EasyBooking.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.flightId = new SelectList(db.Flights, "Id", "FlightCode", reservation.flightId);
-            ViewBag.paymentId = new SelectList(db.Payments, "Id", "Mode", reservation.paymentId);
             return View(reservation);
         }
 

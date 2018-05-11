@@ -7,10 +7,8 @@ using System.Web;
 
 namespace EasyBooking.Models.ViewModels
 {
-    [Table("schedules")]
     public class Schedule
     {
-        [Key]
         public int Id { get; set; }
         public int FirstClassRemainingSeats { get; set; }
         public int EconomyClassRemainingSeats { get; set; }

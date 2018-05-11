@@ -1,6 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using EasyBooking.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -16,12 +18,14 @@ namespace EasyBooking.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual ICollection<Reservation> Reservations { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("EasyBookingDbContext", throwIfV1Schema: false)
         {
         }
 
@@ -29,5 +33,11 @@ namespace EasyBooking.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Flight> Flights { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

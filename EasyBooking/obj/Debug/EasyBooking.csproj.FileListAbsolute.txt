@@ -20,7 +20,6 @@ K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\Microsoft.DiaSymRead
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\Microsoft.VisualBasic.Core.targets
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\Microsoft.Win32.Primitives.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\System.AppContext.dll
-K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\System.Collections.Immutable.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\System.Console.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\System.Diagnostics.Process.dll
@@ -89,6 +88,8 @@ K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\System.Web.WebPages.Deploym
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\System.Web.WebPages.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\System.Web.WebPages.Razor.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\WebGrease.dll
+K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\EntityFramework.xml
+K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\EntityFramework.SqlServer.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\System.Web.Helpers.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\System.Web.Mvc.xml
@@ -102,8 +103,6 @@ K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Newtonsoft.Json.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\System.Net.Http.Formatting.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\System.Web.Http.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\System.Web.Http.WebHost.xml
-K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\EntityFramework.xml
-K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\EntityFramework.SqlServer.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.AspNet.Identity.Core.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.AspNet.Identity.Owin.xml
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\Microsoft.AspNet.Identity.EntityFramework.xml
@@ -126,4 +125,4 @@ K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csproj.Co
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csproj.CopyComplete
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.pdb
-K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csprojResolveAssemblyReference.cache
+K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\System.Collections.Immutable.dll
