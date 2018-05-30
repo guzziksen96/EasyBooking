@@ -126,7 +126,6 @@ K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csproj.Co
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.pdb
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\roslyn\System.Collections.Immutable.dll
-K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\obj\Debug\EasyBooking.csprojResolveAssemblyReference.cache
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\x86\sqlcese40.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\x86\sqlceqp40.dll
 K:\semestr 6\SOA\projekt\EasyBooking\EasyBooking\bin\x86\sqlceme40.dll

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using EasyBooking.Models;
+using EasyBooking.Models.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -9,15 +12,12 @@ namespace EasyBooking.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             return View();
         }
-
-        [Authorize]
-        public async Task<ActionResult> GetAirports(string Airport)
-        {
-            return Content("We are using Identity");
-        }
+        
     }
 }

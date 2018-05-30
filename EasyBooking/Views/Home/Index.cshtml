@@ -11,12 +11,12 @@
     <div class="landing-page">
         <div class="container-fluid">
             <div class="container" style="margin-top: 60px;">
-                <div id="CityName" class="col-md-4 well">
-                    <input type="text" name="text" id="text" placeholder="From?" class="text typeahead" />
+                <div id="departureCityDiv" class="col-md-4 well">
+                    <input type="text" name="text" id="departureCity" placeholder="From?" class="form-control"/>
                 </div>
          
-                <div id="CityName" class="col-md-4 well" style="margin-left:30px">
-                    <input type="text" name="text" id="text" placeholder="To?" class="text typeahead"/>
+                <div id="arrivalCityDiv" class="col-md-4 well" style="margin-left:30px">
+                    <input type="text" name="text" id="arrivalCity" placeholder="To?"  class="form-control"/>
                 </div>
             </div>
             <div class="dates">
@@ -27,11 +27,6 @@
                     @Html.TextBox("returnDate", "Return", new { @class = "datepicker" })
                 </div>
             </div>
-           
-            @*<div>
-            <div id="details"></div>
-            <input type="text" id="Search" data-provide="typeahead" placeholder="Client Name" autocomplete="off" />
-        </div>*@
 
         </div>
        
@@ -55,64 +50,57 @@
         orientation: 'left bottom',
         autoclose: true
     });
-    
+
     $(document).ready(function () {
 
-        $("#Search").typeahead({
-            source: function (query, process) {
-                var countries = [];
-                map = {};
+         $("#departureCityDiv").on("change",
+            function() {
+                var filterValue = $("#departureCity").val();
 
-                // This is going to make an HTTP post request to the controller
-                return $.post('/Reservations/CountryLookup', { query: query }, function (data) {
+                $.ajax({
+                    url: "/Reservations/GetDepartureCity",
+                    type: "get",
+                    data: { search: filterValue },
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    complete: function(data) {
 
-                    // Loop through and push to the array
-                    $.each(data, function (i, country) {
-                        map[country.Name] = country;
-                        countries.push(country.Name);
-                    });
-
-                    // Process the details
-                    process(countries);
+                    },
+                    error: function() {
+                    },
+                    success: function() {
+                    }
                 });
-            },
-            updater: function (item) {
-                var selectedShortCode = map[item].ShortCode;
-
-                // Set the text to our selected id
-                $("#details").text("Selected : " + selectedShortCode);
-                return item;
-            }
-        });
-
-
-        $(function () {
-            var bestPictures = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Value'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                remote: '/Reservations/testdata?query=%QUERY',
 
             });
 
-            bestPictures.initialize();
+         $("#arrivalCityDiv").click(function () {
+                var filterValue = $("#arrivalCity").val();
 
-            $('#remote .typeahead').typeahead(null, {
-                name: 'best-pictures',
-                displayKey: 'Value',
-                minLength: 3,
-                source: bestPictures.ttAdapter()
-            });
+                $.ajax({
+                    url: "/Reservations/GetArrivalCity",
+                    type: "get",
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    data: { search: filterValue },
+                    complete: function(data) {
 
-            $('#remote .typeahead').on('typeahead:selected', function (event, suggestion, datasetName) {
-                console.log(suggestion);
+                    },
+                    error: function() {
+
+                    },
+                    success: function() {
+
+                    }
+                });
+
             });
-        });
 
         $("#fromDate").on("change", function () {
             var fromDate = $('#fromDate').datepicker('getDate').toISOString();
 
             $.ajax({
-                url: "/Reservations/ GetFromDateTime",
+                url: "/Reservations/GetFromDateTime",
                 type: "get",
                 data: { fromDate: fromDate },
                 complete: function (data) {
@@ -128,7 +116,7 @@
             var returnDate = $('#returnDate').datepicker('getDate').toISOString();
 
             $.ajax({
-                url: "/Reservations/ GetReturnDateTime",
+                url: "/Reservations/GetReturnDateTime",
                 type: "get",
                 data: {
                     returnDate: returnDate
@@ -142,5 +130,5 @@
             });
         });
     });
-    
+
 </script>
