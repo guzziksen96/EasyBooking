@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using EasyBooking.Data;
 using EasyBooking.Models.ViewModels;
 using EasyBooking.Models;
+using EasyBooking.Services;
 
 namespace EasyBooking.Controllers
 {
@@ -30,7 +31,7 @@ namespace EasyBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Flight flight = await db.Flights.FindAsync(id);
+           Flight flight = await db.Flights.FindAsync(id);
             if (flight == null)
             {
                 return HttpNotFound();
@@ -93,7 +94,7 @@ namespace EasyBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,FlightCode,DepartureDate,ArrivalDate,DepartureCity,ArrivalCity,SeatsFirstclass,SeatsEconomyclass")] Flight flight)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,FlightCode,DepartureDate,ArrivalDate,DepartureCity,ArrivalCity,SeatsFirstclass,SeatsEconomyclass")] ScheduleFlight flight)
         {
             if (ModelState.IsValid)
             {

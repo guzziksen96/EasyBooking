@@ -14,8 +14,8 @@ namespace EasyBooking.Models.ViewModels
         public string UserId { get; set; }
         public int Price { get; set; }
         public int FlightClassNumber { get; set;  }
-        public virtual Flight Flight { get; set; }
-        public virtual Schedule Schedule { get; set; }
+        public virtual ScheduleFlight Flight { get; set; }
+        public virtual RyanairSchedule Schedule { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual User User { get; set; }
     }

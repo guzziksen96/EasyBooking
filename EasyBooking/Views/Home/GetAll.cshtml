@@ -1,0 +1,61 @@
+﻿@model IEnumerable<EasyBooking.Models.ViewModels.Flight>
+
+@{
+    ViewBag.Title = "All Flights";
+}
+
+<h4>All </h4><br />
+<table class="table">
+    <tr>
+        <th>
+            Departure date
+        </th>
+        <th>
+            Arrival date
+        </th>
+        <th>
+            Departure city
+        </th>
+        <th>
+            Arrival city
+        </th>
+        <th>
+            Available Seats for First class
+        </th>
+        <th>
+            Available Seats for Economy class
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatsFirstclass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatsEconomyclass)
+            </td>
+            <td>
+                @Html.ActionLink("BookFlight", "BookFlight", "Flights") |
+
+            </td>
+        </tr>
+        }
+    }
+
+</table>
