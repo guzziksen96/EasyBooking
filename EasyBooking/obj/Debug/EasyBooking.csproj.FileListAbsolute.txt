@@ -285,3 +285,4 @@ C:\Users\danie\Desktop\github\EasyBooking\EasyBooking\bin\System.Web.Providers.d
 C:\Users\danie\Desktop\github\EasyBooking\EasyBooking\bin\System.Web.Providers.xml
 C:\Users\danie\Desktop\github\EasyBooking\EasyBooking\bin\EntityFramework.SqlServerCompact.dll
 C:\Users\danie\Desktop\github\EasyBooking\EasyBooking\bin\EntityFramework.SqlServerCompact.xml
+C:\Users\danie\Desktop\github\EasyBooking\EasyBooking\obj\Debug\EasyBooking.Migrations.m_v1.resources
