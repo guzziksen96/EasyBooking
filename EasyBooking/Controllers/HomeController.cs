@@ -1,8 +1,11 @@
 ﻿using EasyBooking.Models;
 using EasyBooking.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using EasyBooking.Data;
+using EasyBooking.Models.ViewModels;
 
 namespace EasyBooking.Controllers
 {
@@ -12,15 +15,15 @@ namespace EasyBooking.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.countries  = CityMaping.AiportsDictionary.Select(x => x.Key).ToList();
             return View();
         }
-
 
         [HttpPost]
         public ActionResult SearchResults(string departureCity, string arrivalCity, DateTime fromDate, DateTime returnDate)
         {
-            departureCity = "PALMA DE MALLORCA";
-                arrivalCity = "DUBLIN";
+            //departureCity = "PALMA DE MALLORCA";
+                //arrivalCity = "DUBLIN";
             DataCollector collector = new DataCollector();
             var ryanairFlights = collector.GetFromRyanair(fromDate, departureCity, arrivalCity);
 

@@ -125,7 +125,7 @@ namespace EasyBooking.Controllers
 
         public async Task<ActionResult> GetDepartureCity(string search)
         {
-          
+            
             return Json(search, JsonRequestBehavior.AllowGet);
 
         }
