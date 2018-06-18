@@ -11,9 +11,11 @@ namespace EasyBooking.Models.ViewModels
     {
 
         public Flight()
-        { }
-        public Flight(RyanairFlight rf, DateTime arrivalDate)
         {
+        }
+        public Flight(RyanairFlight rf, DateTime arrivalDate, string userId)
+        {
+            UserId = userId;
             this.Id = rf.Number;
             this.FlightCode = rf.Number.ToString();
 
@@ -54,5 +56,6 @@ namespace EasyBooking.Models.ViewModels
         public String ArrivalCity { get; set; }
         public int SeatsFirstclass { get; set; }
         public int SeatsEconomyclass { get; set; }
+        public string UserId { get; set; }
     }
 }

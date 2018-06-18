@@ -16,7 +16,7 @@ namespace EasyBooking.Services
     public class DataCollector
     {
         
-        public List<Flight> GetFromRyanair(DateTime ArrivalDate, string fromCity, string toCity)
+        public List<Flight> GetFromRyanair(DateTime ArrivalDate, string fromCity, string toCity, string UserId)
         {
 
             List<ScheduleFlight> ScheduleFlights = GetSchedule(ArrivalDate, fromCity, toCity);
@@ -24,7 +24,7 @@ namespace EasyBooking.Services
             List<RyanairFlight> rFlights = GetFlights(ScheduleFlights);
 
 
-            return rFlights.Select(f => new Flight(f, ArrivalDate)).ToList();
+            return rFlights.Select(f => new Flight(f, ArrivalDate, UserId)).ToList();
 
         }
         private List<RyanairFlight> GetFlights(List<ScheduleFlight> ScheduleFlights)

@@ -22,7 +22,7 @@ namespace EasyBooking.Services
             db.SaveChanges();
             return result;
         }
-
+        
         public List<Flight> GetAll()
         {
             return db.Flights.ToList();

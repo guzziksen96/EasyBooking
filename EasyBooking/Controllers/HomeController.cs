@@ -3,8 +3,10 @@ using EasyBooking.Services;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 using EasyBooking.Data;
 using EasyBooking.Models.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace EasyBooking.Controllers
 {
@@ -21,17 +23,19 @@ namespace EasyBooking.Controllers
         [HttpPost]
         public ActionResult SearchResults(string departureCity, string arrivalCity, DateTime fromDate, DateTime returnDate)
         {
+
             ViewBag.Source = departureCity;
             ViewBag.Dest = arrivalCity;
+            var userId = User.Identity.GetUserId();
 
             if (DateTime.Compare(fromDate, DateTime.Today) > 0)
             {
                 //var flights = db.Flights.Where(f => f.ArrivalCity == arrivalCity && f.DepartureCity == departureCity
                 //                                && f.DepartureDate == fromDate && f.ArrivalDate == returnDate).ToList();
-                var ryanairFlights = collector.GetFromRyanair(fromDate, departureCity, arrivalCity);
+                var ryanairFlights = collector.GetFromRyanair(fromDate, departureCity, arrivalCity, userId);
                 flightDatabaseService.SaveFlights(ryanairFlights);
 
-                if (ryanairFlights.Count() == 0)
+                if (!ryanairFlights.Any())
                 {
                     ViewBag.ScheduleMessage = "No flights on the entered date";
                 }
@@ -49,7 +53,8 @@ namespace EasyBooking.Controllers
         [HttpGet]
         public ActionResult GetAll()
         {
-            return View(flightDatabaseService.GetAll());
+            var user = User.Identity.GetUserId();
+            return View(flightDatabaseService.GetAll().Where(flight => flight.UserId.Equals(user)).ToList());
 
         }
     }

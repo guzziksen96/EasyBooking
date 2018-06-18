@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -11,6 +12,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using EasyBooking.Models;
+using Microsoft.ApplicationInsights.Web;
+using Twilio;
+using Twilio.Clients;
+using Twilio.Rest;
+using Twilio.Rest.Api.V2010.Account;
 
 namespace EasyBooking
 {
@@ -27,8 +33,18 @@ namespace EasyBooking
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your SMS service here to send a text message.
+            String accountSeed = System.Configuration.ConfigurationManager.AppSettings["SMSAccountIdentification"];
+            String accountPassword = System.Configuration.ConfigurationManager.AppSettings["SMSAccountPassword"];
+            TwilioClient.Init(accountSeed, accountPassword);
+            var msg = MessageResource.Create(
+                body: message.Body,
+                from: new Twilio.Types.PhoneNumber(System.Configuration.ConfigurationManager.AppSettings["SMSAccountFrom"]),
+                to: new Twilio.Types.PhoneNumber(message.Destination),
+                pathAccountSid: accountSeed
+            );
+            Trace.TraceInformation(msg.Status.ToString());
             return Task.FromResult(0);
+
         }
     }
 
