@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EasyBooking.Models.ViewModels.Flight>
+﻿@model IEnumerable<EasyBooking.RyanairDataCollectorService.FlightS>
 
 @{
     ViewBag.Title = "All Flights";
@@ -51,7 +51,7 @@
                 @Html.DisplayFor(modelItem => item.SeatsEconomyclass)
             </td>
             <td>
-                @Html.ActionLink("BookFlight", "BookFlight", "Flights") |
+                <a href="https://www.ryanair.com/pl/pl/" target="_blank">BookFlight</a>
 
             </td>
         </tr>

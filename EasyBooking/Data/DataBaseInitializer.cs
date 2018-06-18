@@ -1,5 +1,6 @@
 ﻿using EasyBooking.Models;
 using EasyBooking.Models.ViewModels;
+using EasyBooking.RyanairDataCollectorService;
 using FizzWare.NBuilder;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,10 @@ namespace EasyBooking.Data
                     .With(f => f.FlightCode = Faker.Lorem.Paragraph())
                     .With(f => f.DepartureCity = Faker.Name.Last())
                     .With(f => f.ArrivalCity = Faker.Name.Last())
-                    .With(f => f.DepartureDate = DateTime.Now.AddDays(-randomGenerator.Next(1, 100)))
-                    .With(f => f.ArrivalDate = DateTime.Now.AddDays(-randomGenerator.Next(1, 100)))
-                    .Build();
-            
+                  .With(f => f.DepartureDate = DateTime.Now.AddDays(-randomGenerator.Next(1, 100)))
+                   .With(f => f.ArrivalDate = DateTime.Now.AddDays(-randomGenerator.Next(1, 100)))
+                   .Build();
+
             context.Flights.AddOrUpdate(f => f.Id, flights.ToArray());
             context.SaveChanges();
 

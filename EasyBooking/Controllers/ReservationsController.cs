@@ -139,16 +139,16 @@ namespace EasyBooking.Controllers
 
         public async Task<ActionResult> GetFromDateTime(DateTime fromDate)
         {
-            List<Flight> flights = await db.Flights.ToListAsync();
-            var flightsFromDate = flights.Where(f => f.DepartureDate.CompareTo(fromDate) >= 0);
-            return Json(flightsFromDate, JsonRequestBehavior.AllowGet);
+           // List<Flight> flights = await db.Flights.ToListAsync();
+        //    var flightsFromDate = flights.Where(f => f.DepartureDate.CompareTo(fromDate) >= 0);
+            return Json("", JsonRequestBehavior.AllowGet);
         }
 
         public async Task<ActionResult> GetReturnDateTime(DateTime returnDate)
         {
-            List<Flight> flights = await db.Flights.ToListAsync();
-            var flightsBeforeDate = flights.Where(f => f.ArrivalDate.CompareTo(returnDate) <= 0);
-            return Json(flightsBeforeDate, JsonRequestBehavior.AllowGet);
+           // List<Flight> flights = await db.Flights.ToListAsync();
+          //  var flightsBeforeDate = flights.Where(f => f.ArrivalDate.CompareTo(returnDate) <= 0);
+            return Json("", JsonRequestBehavior.AllowGet);
         }
         
         protected override void Dispose(bool disposing)

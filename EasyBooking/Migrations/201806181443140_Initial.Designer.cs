@@ -7,13 +7,13 @@ namespace EasyBooking.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class userId_fight : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(userId_fight));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806181421059_userId_fight"; }
+            get { return "201806181443140_Initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -7,16 +7,20 @@ using System.Web.Security;
 using EasyBooking.Data;
 using EasyBooking.Models.ViewModels;
 using Microsoft.AspNet.Identity;
+using EasyBooking.RyanairDataCollectorService;
 
 namespace EasyBooking.Controllers
 {
     public class HomeController : Controller
     {
         private FlightDatabaseService flightDatabaseService = new FlightDatabaseService();
-        private DataCollector collector = new DataCollector();
+        //private DataCollector collector = new DataCollector();
+
+        private RyanairDataCollectorClient collectorService = new RyanairDataCollectorClient();
+
         public ActionResult Index()
         {
-            ViewBag.countries  = CityMaping.AiportsDictionary.Select(x => x.Key).ToList();
+            ViewBag.countries = CityMaping.AiportsDictionary.Select(x => x.Key).ToList();
             return View();
         }
 
@@ -32,7 +36,7 @@ namespace EasyBooking.Controllers
             {
                 //var flights = db.Flights.Where(f => f.ArrivalCity == arrivalCity && f.DepartureCity == departureCity
                 //                                && f.DepartureDate == fromDate && f.ArrivalDate == returnDate).ToList();
-                var ryanairFlights = collector.GetFromRyanair(fromDate, departureCity, arrivalCity, userId);
+                var ryanairFlights = collectorService.GetFromRyanair(fromDate, departureCity, arrivalCity, userId).ToList();
                 flightDatabaseService.SaveFlights(ryanairFlights);
 
                 if (!ryanairFlights.Any())
@@ -54,7 +58,19 @@ namespace EasyBooking.Controllers
         public ActionResult GetAll()
         {
             var user = User.Identity.GetUserId();
-            return View(flightDatabaseService.GetAll().Where(flight => flight.UserId.Equals(user)).ToList());
+            if (user != null)
+            {
+                return View(flightDatabaseService.GetAll().Where(flight =>
+                {
+                    if (flight.UserId != null)
+                    {
+                        return flight.UserId.Equals(user);
+                    }
+                    return false;
+                }).ToList());
+
+            }
+            return View();
 
         }
     }

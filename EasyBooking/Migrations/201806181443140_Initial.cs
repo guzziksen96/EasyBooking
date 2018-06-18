@@ -3,7 +3,7 @@ namespace EasyBooking.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMigration : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -19,6 +19,7 @@ namespace EasyBooking.Migrations
                         ArrivalCity = c.String(maxLength: 4000),
                         SeatsFirstclass = c.Int(nullable: false),
                         SeatsEconomyclass = c.Int(nullable: false),
+                        UserId = c.String(maxLength: 4000),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -45,31 +46,57 @@ namespace EasyBooking.Migrations
                         Payment_Id = c.Int(),
                         Schedule_Id = c.Int(),
                         User_Id = c.Int(),
+                        Schedule_Id1 = c.Int(),
                         ApplicationUser_Id = c.String(maxLength: 4000),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Flights", t => t.Flight_Id)
+                .ForeignKey("dbo.ScheduleFlights", t => t.Flight_Id)
                 .ForeignKey("dbo.Payments", t => t.Payment_Id)
-                .ForeignKey("dbo.Schedules", t => t.Schedule_Id)
+                .ForeignKey("dbo.RyanairSchedules", t => t.Schedule_Id)
                 .ForeignKey("dbo.Users", t => t.User_Id)
+                .ForeignKey("dbo.Schedules", t => t.Schedule_Id1)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
                 .Index(t => t.Flight_Id)
                 .Index(t => t.Payment_Id)
                 .Index(t => t.Schedule_Id)
                 .Index(t => t.User_Id)
+                .Index(t => t.Schedule_Id1)
                 .Index(t => t.ApplicationUser_Id);
             
             CreateTable(
-                "dbo.Schedules",
+                "dbo.ScheduleFlights",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        FirstClassRemainingSeats = c.Int(nullable: false),
-                        EconomyClassRemainingSeats = c.Int(nullable: false),
-                        FirstClassPrice = c.Double(nullable: false),
-                        EconomyClassPrice = c.Double(nullable: false),
+                        Number = c.Int(nullable: false),
+                        DepartureTime = c.String(maxLength: 4000),
+                        ArrivalTime = c.String(maxLength: 4000),
+                        ScheduleDay_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ScheduleDays", t => t.ScheduleDay_Id)
+                .Index(t => t.ScheduleDay_Id);
+            
+            CreateTable(
+                "dbo.RyanairSchedules",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Month = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.ScheduleDays",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DayDay = c.Int(nullable: false),
+                        RyanairSchedule_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.RyanairSchedules", t => t.RyanairSchedule_Id)
+                .Index(t => t.RyanairSchedule_Id);
             
             CreateTable(
                 "dbo.Users",
@@ -104,6 +131,18 @@ namespace EasyBooking.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Schedules",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        FirstClassRemainingSeats = c.Int(nullable: false),
+                        EconomyClassRemainingSeats = c.Int(nullable: false),
+                        FirstClassPrice = c.Double(nullable: false),
+                        EconomyClassPrice = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -158,18 +197,24 @@ namespace EasyBooking.Migrations
             DropForeignKey("dbo.Reservations", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Reservations", "Schedule_Id1", "dbo.Schedules");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Reservations", "User_Id", "dbo.Users");
-            DropForeignKey("dbo.Reservations", "Schedule_Id", "dbo.Schedules");
+            DropForeignKey("dbo.Reservations", "Schedule_Id", "dbo.RyanairSchedules");
+            DropForeignKey("dbo.ScheduleDays", "RyanairSchedule_Id", "dbo.RyanairSchedules");
+            DropForeignKey("dbo.ScheduleFlights", "ScheduleDay_Id", "dbo.ScheduleDays");
             DropForeignKey("dbo.Reservations", "Payment_Id", "dbo.Payments");
-            DropForeignKey("dbo.Reservations", "Flight_Id", "dbo.Flights");
+            DropForeignKey("dbo.Reservations", "Flight_Id", "dbo.ScheduleFlights");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.ScheduleDays", new[] { "RyanairSchedule_Id" });
+            DropIndex("dbo.ScheduleFlights", new[] { "ScheduleDay_Id" });
             DropIndex("dbo.Reservations", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.Reservations", new[] { "Schedule_Id1" });
             DropIndex("dbo.Reservations", new[] { "User_Id" });
             DropIndex("dbo.Reservations", new[] { "Schedule_Id" });
             DropIndex("dbo.Reservations", new[] { "Payment_Id" });
@@ -177,10 +222,13 @@ namespace EasyBooking.Migrations
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Schedules");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Users");
-            DropTable("dbo.Schedules");
+            DropTable("dbo.ScheduleDays");
+            DropTable("dbo.RyanairSchedules");
+            DropTable("dbo.ScheduleFlights");
             DropTable("dbo.Reservations");
             DropTable("dbo.Payments");
             DropTable("dbo.Flights");

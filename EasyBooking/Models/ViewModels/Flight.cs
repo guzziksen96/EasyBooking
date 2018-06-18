@@ -47,7 +47,7 @@ namespace EasyBooking.Models.ViewModels
             this.SeatsFirstclass = Faker.RandomNumber.Next(5,20);
             this.SeatsEconomyclass = Faker.RandomNumber.Next(20, 60);
         }
-
+        [Key]
         public int Id { get; set; }
         public string FlightCode { get; set; }
         public DateTime DepartureDate { get; set; }
