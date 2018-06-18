@@ -228,6 +228,7 @@ namespace EasyBooking.Services
 
         public List<Flight> GetFromRyanair(DateTime ArrivalDate, string fromCity, string toCity)
         {
+
             List<ScheduleFlight> ScheduleFlights = GetSchedule(ArrivalDate, fromCity, toCity);
 
             List<RyanairFlight> rFlights = GetFlights(ScheduleFlights);
@@ -262,32 +263,46 @@ namespace EasyBooking.Services
         }
         private List<ScheduleFlight> GetSchedule(DateTime ArrivalDate, string fromCity, string toCity)
         {
-            string scheduleAddress = string.Format(
-              "https://api.ryanair.com/timetable/3/schedules/" +
-              "{0}/" +
-              "{1}/" +
-              "years/{2}/" +
-              "months/{3}",
-              Uri.EscapeDataString(AiportsDictionary[fromCity.ToUpper()]),
-              Uri.EscapeDataString(AiportsDictionary[toCity.ToUpper()]),
-              Uri.EscapeDataString(ArrivalDate.Year.ToString()),
-              Uri.EscapeDataString(ArrivalDate.Month.ToString())
-            );
-            string text;
-            using (WebClient client = new WebClient())
+            if (AiportsDictionary.ContainsKey(fromCity.ToUpper()) && AiportsDictionary.ContainsKey(toCity.ToUpper()))
             {
-                text = client.DownloadString(scheduleAddress);
-                RyanairSchedule rr = DeserializeRyanairScheduleResponseConverter.FromJson(text);
-                var v = rr.Days.Where(d => d.DayDay.Equals(ArrivalDate.Day));
-                List<ScheduleFlight> result = new List<ScheduleFlight>();
-                if (v.Count() > 0)
+                string scheduleAddress = string.Format(
+                 "https://api.ryanair.com/timetable/3/schedules/" +
+                 "{0}/" +
+                 "{1}/" +
+                 "years/{2}/" +
+                 "months/{3}",
+                 Uri.EscapeDataString(AiportsDictionary[fromCity.ToUpper()]),
+                 Uri.EscapeDataString(AiportsDictionary[toCity.ToUpper()]),
+                 Uri.EscapeDataString(ArrivalDate.Year.ToString()),
+                 Uri.EscapeDataString(ArrivalDate.Month.ToString())
+               );
+                string text;
+                using (WebClient client = new WebClient())
                 {
-                    result = rr.Days.Where(d => d.DayDay.Equals(ArrivalDate.Day)).First().ScheduleFlights;
+                    try
+                    {
+                        text = client.DownloadString(scheduleAddress);
+                        RyanairSchedule rr = DeserializeRyanairScheduleResponseConverter.FromJson(text);
+                        var v = rr.Days.Where(d => d.DayDay.Equals(ArrivalDate.Day));
+                        List<ScheduleFlight> result = new List<ScheduleFlight>();
+                        if (v.Count() > 0)
+                        {
+                            result = rr.Days.Where(d => d.DayDay.Equals(ArrivalDate.Day)).First().ScheduleFlights;
+                        }
+                        return result;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        return new List<ScheduleFlight>();
+                    }
+
+
+                   
                 }
-
-
-                return result;
             }
+            return new List<ScheduleFlight>();
+
         }
     }
 }

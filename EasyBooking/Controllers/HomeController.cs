@@ -1,6 +1,7 @@
 ﻿using EasyBooking.Models;
 using EasyBooking.Services;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -8,8 +9,8 @@ namespace EasyBooking.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private FlightDatabaseService flightDatabaseService = new FlightDatabaseService();
+        private DataCollector collector = new DataCollector();
         public ActionResult Index()
         {
             return View();
@@ -19,11 +20,8 @@ namespace EasyBooking.Controllers
         [HttpPost]
         public ActionResult SearchResults(string departureCity, string arrivalCity, DateTime fromDate, DateTime returnDate)
         {
-            departureCity = "PALMA DE MALLORCA";
-                arrivalCity = "DUBLIN";
-            DataCollector collector = new DataCollector();
-            var ryanairFlights = collector.GetFromRyanair(fromDate, departureCity, arrivalCity);
-
+            departureCity = "KATOWICE";
+            arrivalCity = "Kraków";
 
             ViewBag.Source = departureCity;
             ViewBag.Dest = arrivalCity;
@@ -32,20 +30,28 @@ namespace EasyBooking.Controllers
             {
                 //var flights = db.Flights.Where(f => f.ArrivalCity == arrivalCity && f.DepartureCity == departureCity
                 //                                && f.DepartureDate == fromDate && f.ArrivalDate == returnDate).ToList();
+                var ryanairFlights = collector.GetFromRyanair(fromDate, departureCity, arrivalCity);
+                flightDatabaseService.SaveFlights(ryanairFlights);
 
                 if (ryanairFlights.Count() == 0)
                 {
                     ViewBag.ScheduleMessage = "No flights on the entered date";
-
                 }
                 return View(ryanairFlights);
             }
             else
             {
                 ViewBag.ScheduleMessage = "Cannot book flights for requested date. Choose date after today";
-
                 return View();
             }
+
+        }
+
+
+        [HttpGet]
+        public ActionResult GetAll()
+        {
+            return View(flightDatabaseService.GetAll());
 
         }
     }

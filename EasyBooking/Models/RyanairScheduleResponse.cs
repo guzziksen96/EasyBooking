@@ -15,6 +15,7 @@ namespace EasyBooking.Models
 
     public partial class RyanairSchedule
     {
+        public int Id { get; set; }
         [JsonProperty("month")]
         public int Month { get; set; }
 
@@ -24,6 +25,7 @@ namespace EasyBooking.Models
 
     public partial class ScheduleDay
     {
+        public int Id { get; set; }
         [JsonProperty("day")]
         public int DayDay { get; set; }
 
@@ -33,6 +35,7 @@ namespace EasyBooking.Models
 
     public partial class ScheduleFlight
     {
+        public int Id { get; set; }
         [JsonProperty("number")]
         public int Number { get; set; }
 

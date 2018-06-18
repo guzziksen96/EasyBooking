@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EasyBooking.Models;
+using System.Data.Entity;
 
 namespace EasyBooking.Controllers
 {
@@ -151,6 +152,7 @@ namespace EasyBooking.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Database.SetInitializer<ApplicationDbContext>(null);
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

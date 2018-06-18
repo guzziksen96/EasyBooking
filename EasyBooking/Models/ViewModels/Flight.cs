@@ -9,27 +9,41 @@ namespace EasyBooking.Models.ViewModels
 {
     public class Flight
     {
+
+        public Flight()
+        { }
         public Flight(RyanairFlight rf, DateTime arrivalDate)
         {
             this.Id = rf.Number;
             this.FlightCode = rf.Number.ToString();
-            //this.DepartureDate = 
-            var time = rf.ArrivalTime.Scheduled.Split(':');
 
-            ArrivalDate= new DateTime(
+            var dTime = rf.DepartureTime.Scheduled.Split(':');
+            this.DepartureDate = new DateTime(
                 arrivalDate.Year,
                 arrivalDate.Month,
                 arrivalDate.Day,
-                int.Parse(time[0]),
-                int.Parse(time[1]),
+                int.Parse(dTime[0]),
+                int.Parse(dTime[1]),
+                0,
+                0,
+                arrivalDate.Kind
+             );
+
+            var aTime = rf.ArrivalTime.Scheduled.Split(':');
+            this.ArrivalDate = new DateTime(
+                arrivalDate.Year,
+                arrivalDate.Month,
+                arrivalDate.Day,
+                int.Parse(aTime[0]),
+                int.Parse(aTime[1]),
                 0,
                 0,
                 arrivalDate.Kind
              );
             this.DepartureCity = rf.DepartureAirport.Name;
             this.ArrivalCity = rf.ArrivalAirport.Name;
-            this.SeatsFirstclass = 13;
-            this.SeatsEconomyclass = 100;
+            this.SeatsFirstclass = Faker.RandomNumber.Next(5,20);
+            this.SeatsEconomyclass = Faker.RandomNumber.Next(20, 60);
         }
 
         public int Id { get; set; }
