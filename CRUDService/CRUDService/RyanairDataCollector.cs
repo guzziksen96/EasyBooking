@@ -8,11 +8,12 @@ using System.Text;
 using EasyBooking.Data;
 using EasyBooking.Models;
 using EasyBooking.Models.ViewModels;
+using ObjectsManager.Model;
 
 namespace CRUDService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class ObjectsService : IRyanairDataCollector
+    public class RyanairDataCollector : IRyanairDataCollector
     {
         public List<FlightS> GetFromRyanair(DateTime ArrivalDate, string fromCity, string toCity, string UserId)
         {
@@ -38,14 +39,14 @@ namespace CRUDService
             using (WebClient client = new WebClient())
             {
                 List<RyanairFlight> result = new List<RyanairFlight>();
-                foreach (var a in adresses)
+                adresses.ForEach(a =>
                 {
                     var f = DeserializeRyanairResponse.FromJson(client.DownloadString(a)).Flights;
                     if (f.Count() > 0)
                     {
                         result.Add(f.First());
                     }
-                }
+                });
                 return result;
             }
         }

@@ -43,10 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RayanairModels\FlightStatus.cs" />
+    <Compile Include="RayanairModels\FlightTime.cs" />
+    <Compile Include="RayanairModels\RayanairFlight.cs" />
+    <Compile Include="RayanairModels\RyanairAiport.cs" />
     <Compile Include="RyanairScheduleResponse.cs" />
     <Compile Include="FlightS.cs" />
-    <Compile Include="RyanairResponse.cs" />
+    <Compile Include="RayanairModels\RyanairResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkyscannerModels\SkyscannerQuote.cs" />
+    <Compile Include="SkyscannerModels\SkyscannerBoundLeg.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

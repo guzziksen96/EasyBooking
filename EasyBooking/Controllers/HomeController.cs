@@ -14,7 +14,6 @@ namespace EasyBooking.Controllers
     public class HomeController : Controller
     {
         private FlightDatabaseService flightDatabaseService = new FlightDatabaseService();
-        //private DataCollector collector = new DataCollector();
 
         private RyanairDataCollectorClient collectorService = new RyanairDataCollectorClient();
 
@@ -34,8 +33,6 @@ namespace EasyBooking.Controllers
 
             if (DateTime.Compare(fromDate, DateTime.Today) > 0)
             {
-                //var flights = db.Flights.Where(f => f.ArrivalCity == arrivalCity && f.DepartureCity == departureCity
-                //                                && f.DepartureDate == fromDate && f.ArrivalDate == returnDate).ToList();
                 var ryanairFlights = collectorService.GetFromRyanair(fromDate, departureCity, arrivalCity, userId).ToList();
                 flightDatabaseService.SaveFlights(ryanairFlights);
 

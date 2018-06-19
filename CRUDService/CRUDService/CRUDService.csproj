@@ -49,9 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\CityMaping.cs" />
-    <Compile Include="IObjectsService.cs" />
+    <Compile Include="ISkyscannerDataCollector.cs" />
+    <Compile Include="IRyanairDataCollector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ObjectsService.cs" />
+    <Compile Include="RyanairDataCollector.cs" />
+    <Compile Include="SkyscannerDataCollector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

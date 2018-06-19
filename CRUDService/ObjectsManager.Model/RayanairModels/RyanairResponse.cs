@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using ObjectsManager.Model;
 
 namespace EasyBooking.Models
 {
@@ -23,64 +24,6 @@ namespace EasyBooking.Models
         [JsonProperty("size")]
         public long Size { get; set; }
     }
-
-
-    public class RyanairFlight
-    {
-        [JsonProperty("number")]
-        public int Number { get; set; }
-
-        [JsonProperty("departureAirport")]
-        public RyanairAiport DepartureAirport { get; set; }
-
-        [JsonProperty("arrivalAirport")]
-        public RyanairAiport ArrivalAirport { get; set; }
-
-        [JsonProperty("departureTime")]
-        public FlightTime DepartureTime { get; set; }
-
-        [JsonProperty("arrivalTime")]
-        public FlightTime ArrivalTime { get; set; }
-
-        [JsonProperty("status")]
-        public FlightStatus Status { get; set; }
-
-        [JsonProperty("lastUpdated")]
-        public DateTimeOffset LastUpdated { get; set; }
-    }
-
-    public class RyanairAiport
-    {
-        [JsonProperty("iataCode")]
-        public string IataCode { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-    }
-
-    public class FlightTime
-    {
-        [JsonProperty("scheduled")]
-        public string Scheduled { get; set; }
-
-        [JsonProperty("estimated")]
-        public string Estimated { get; set; }
-
-        [JsonProperty("actual")]
-        public string Actual { get; set; }
-    }
-
-    public class FlightStatus
-    {
-        [JsonProperty("code")]
-        public string Code { get; set; }
-        [JsonProperty("message")]
-        public string Message { get; set; }
-        [JsonProperty("detailedMessage")]
-        public string DetailedMessage { get; set; }
-
-    }
-
-
 
     public partial class DeserializeRyanairResponse
     {
