@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectsManager.Model;
+using System;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
@@ -9,9 +10,8 @@ namespace EasyBooking.Models.ViewModels
     [DataContract]
     public class FlightS
     {
+        public FlightS() { }
 
-        public FlightS()
-        { }
         public FlightS(RyanairFlight rf, DateTime arrivalDate, string UserId)
         {
             this.Id = rf.Number;
@@ -47,9 +47,9 @@ namespace EasyBooking.Models.ViewModels
             this.SeatsEconomyclass = rnd.Next(20, 60);
             this.UserId = UserId;
         }
+
         [DataMember]
         public int Id { get; set; }
-
         [DataMember]
         public string FlightCode { get; set; }
         [DataMember]
