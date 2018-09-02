@@ -8,8 +8,12 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Styles.Render("~/Content/datepicker")
     @Scripts.Render("~/bundles/datePicker")
+    <!-- Polyfill(s) for older browsers -->
+    @Scripts.Render("~/bundles/angular")
+    <script>
+        System.import('../app/main.js').catch(function (err) { console.error(err); });
+    </script>
     <link href="~/Content/font-awesome.css" rel="stylesheet" />"
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/typeahead.css" rel="stylesheet" />
@@ -34,6 +38,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("History", "GetAll")</li>
+                    <li>@Html.ActionLink("Angular", "Angular", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

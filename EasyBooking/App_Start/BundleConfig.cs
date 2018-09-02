@@ -33,9 +33,16 @@ namespace EasyBooking
                       "~/Content/bootstrap-theme.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/datePicker").Include(
-               "~/Scripts/moment.min.js",
-               "~/Scripts/bootstrap-datetimepicker.min.js"));
-            
+                "~/Scripts/moment.min.js",
+                "~/Scripts/bootstrap-datetimepicker.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                "~/node_modules/core-js/client/shim.min.js",
+                "~/node_modules/zone.js/dist/zone.js",
+                "~/node_modules/core-js/client/shim.min.js",
+                "~/node_modules/systemjs/dist/system.src.js",
+                "~/systemjs.config.js"));
+
         }
     }
 }

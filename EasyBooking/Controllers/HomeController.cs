@@ -50,6 +50,10 @@ namespace EasyBooking.Controllers
 
         }
 
+        public ActionResult Angular()
+        {
+            return View();
+        }
 
         [HttpGet]
         public ActionResult GetAll()
